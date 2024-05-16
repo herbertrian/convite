@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pedidoDeDesculpas.com</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffbfd9; /* Cor de fundo rosa mais suave */
+            overflow: hidden; /* Impede a rolagem da página para esconder o overflow dos corações */
+        }
+
+        #conteudo {
+            background: #f6a1b4; /* Cor de fundo rosa mais forte */
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            position: relative; /* Necessário para posicionar os corações absolutamente */
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: #ff667f; /* Cor de rosa mais intensa para os botões */
+            color: white;
+            border: none;
+            padding: 20px 40px; /* Aumenta o tamanho dos botões */
+            margin: 0 10px;
+            border-radius: 10px; /* Aumenta o raio dos cantos */
+            cursor: pointer;
+            font-size: 24px; /* Aumenta o tamanho da fonte */
+            transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+        }
+
+        .btn:hover {
+            background: #ff425b; /* Cor de rosa mais intensa ao passar o mouse */
+        }
+
+        /* Animação dos corações */
+        .coracao {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            animation: queda 5s linear infinite;
+            z-index: -1; /* Coloca os corações atrás do conteúdo */
+        }
+
+        @keyframes queda {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="conteudo">
+        <h2>Princesa linda, aceita sair comigo?</h2>
+        <div class="buttons-container">
+            <button class="btn" onclick="sim()">SIM</button>
+            <button class="btn" onclick="desvia(this)" onmouseover="desvia(this)">NÃO</button>
+        </div>
+    </div>
+
+    <script>
+        function sim() {
+            alert("Você aceitou sair comigo :D");
+            // Redireciona para um URL após clicar no SIM
+            location.href = "https://www.youtube.com/watch?v=izGwDsrQ1eQ&ab_channel=georgemichaelVEVO";
+        }
+
+        function desvia(btn) {
+            btn.style.position = 'absolute';
+            btn.style.bottom = geraPosicao(10, 90);
+            btn.style.left = geraPosicao(10, 90);
+            console.log('Opa, desviei...');
+        }
+
+        function geraPosicao(min, max) {
+            return (Math.random() * (max - min) + min) + "%";
+        }
+
+        // Gera os corações
+        const conteudo = document.getElementById('conteudo');
+        for (let i = 0; i < 20; i++) {
+            const coracao = document.createElement('img');
+            coracao.classList.add('coracao');
+            coracao.src = 'https://www.flaticon.com/svg/static/icons/svg/222/222420.svg'; // Coração SVG
+            coracao.style.left = geraPosicao(0, 100);
+            coracao.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            conteudo.appendChild(coracao);
+        }
+    </script>
+</body>
+
+</html>
